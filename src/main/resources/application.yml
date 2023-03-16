@@ -15,9 +15,20 @@ spring:
       ddl-auto: none
     properties:
       hibernate:
+        cache:
+          use_second_level_cache: true
+          use_query_cache: true
+          region:
+            factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
         show_sql: false
         format_sql: true
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      javax:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+
+#Cache https://docs.oracle.com/javaee/7/api/javax/persistence/SharedCacheMode.html
 
 logging:
   pattern:
@@ -25,4 +36,5 @@ logging:
   level:
     org:
       hibernate:
+        cache: debug
         SQL: debug

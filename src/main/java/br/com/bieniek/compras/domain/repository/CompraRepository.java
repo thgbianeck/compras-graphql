@@ -15,6 +15,10 @@ public interface CompraRepository extends JpaRepository<Compra, Long> {
     @Query("select c from Compra c where c.cliente.id = :clienteId")
     List<Compra> findAllByCliente(@Param("clienteId") Long clienteId);
 
+    @Override
+//    @CacheEvict(value = "comprasByCliente", key = "#p0.id")
+    <S extends Compra> S save(S s);
+
     @Query("select new br.com.bieniek.compras.graphql.dto.CompraResumo(c.id,cli.nome,p.nome,c.quantidade) " +
             "from Compra c inner join c.cliente cli inner join c.produto p")
     List<CompraResumo> findAllComprasRelatorio();
