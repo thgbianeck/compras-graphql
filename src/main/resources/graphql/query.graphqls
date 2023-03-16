@@ -1,12 +1,9 @@
-type Cliente {
-#    id: ID!
-    nome: String!
-    email: String!
-}
+scalar Date
 
 type Query {
     hello: String!
     soma(a: Int, b: Int): Int
-    cliente: Cliente!
-    clientes: [Cliente!]!
+}
+
+type Mutation {
 }
